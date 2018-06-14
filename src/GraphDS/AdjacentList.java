@@ -1,5 +1,6 @@
 package GraphDS;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,13 +8,14 @@ import java.util.Map;
 
 public class AdjacentList implements GraphAccess{
 
-	public Map<Node,LinkedList<Edge>> adjacentList = new LinkedHashMap<>();
+	public Map<Node,LinkedList<Edge>> adjacentList = new LinkedHashMap<Node,LinkedList<Edge>>();
 	
 	@Override
 	public void addNode(Node vertex) {
 		// If vertex is not present in the map then we will add the new vertex.
 		
-		if(!adjacentList.containsKey(vertex))
+		//System.out.println(adjacentList.containsKey(vertex));
+		if(!(adjacentList.containsKey(vertex)))
 			adjacentList.put(vertex, null);
 		
 	}
@@ -24,8 +26,16 @@ public class AdjacentList implements GraphAccess{
 		// we want to add the new edge.If edge is not 
 		for (Map.Entry<Node,LinkedList<Edge>> entry : adjacentList.entrySet()) {
 		   if(entry.getKey().equals(edge.fromNode)) {
-			   if(!entry.getValue().contains(edge))
+			   if(entry.getValue() == null) {
+				   entry.setValue(new LinkedList<Edge>());
+				   entry.getValue().addFirst(edge);
+				   return;
+			   }
+			   else if(!entry.getValue().contains(edge))
+			   {
 				   entry.getValue().add(edge);
+				   return;
+			   }
 		   }
 		}
 		
@@ -89,5 +99,18 @@ public class AdjacentList implements GraphAccess{
 		}
 		return false;
 	}
-
+	
+	public List<Node> getAllVertices(){
+		return new ArrayList<>(adjacentList.keySet());
+	}
+	
+	public List<Edge> getAllEdges(){
+		List<Edge> edges = new LinkedList<Edge>();
+		for (Map.Entry<Node,LinkedList<Edge>> entry : adjacentList.entrySet()) {
+			 
+			edges.addAll(entry.getValue());
+			   
+			}
+		return edges;
+	}
 }
