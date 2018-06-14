@@ -16,7 +16,7 @@ public class AdjacentList implements GraphAccess{
 		
 		//System.out.println(adjacentList.containsKey(vertex));
 		if(!(adjacentList.containsKey(vertex)))
-			adjacentList.put(vertex, null);
+			adjacentList.put(vertex, new LinkedList<Edge>());
 		
 	}
 
@@ -27,7 +27,7 @@ public class AdjacentList implements GraphAccess{
 		for (Map.Entry<Node,LinkedList<Edge>> entry : adjacentList.entrySet()) {
 		   if(entry.getKey().equals(edge.fromNode)) {
 			   if(entry.getValue() == null) {
-				   entry.setValue(new LinkedList<Edge>());
+				  // entry.setValue(new LinkedList<Edge>());
 				   entry.getValue().addFirst(edge);
 				   return;
 			   }

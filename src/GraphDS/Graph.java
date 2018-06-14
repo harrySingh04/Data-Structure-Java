@@ -50,15 +50,21 @@ public class Graph<E> {
 		
 				
 			}
-			LinkedList<Edge> edges = new LinkedList<Edge>();
+			/*<Edge> edges = new LinkedList<Edge>();
 			 Iterator it;
 			for (Map.Entry<Node,LinkedList<Edge>> entry : adjacentList.adjacentList.entrySet()) {
 				  
-				System.out.println(entry.getKey().data+"===>");
+				System.out.print("\n"+entry.getKey().data+"===>");
 				
-				
-				   
+				edges = entry.getValue();
+				for(Edge e:edges) {
+					System.out.print(e.toNode.data); 
+					System.out.print(" | "+e.weight);
+					System.out.print("      ");
+					
 				}
+				   
+				}*/
 				
 			
 		}
