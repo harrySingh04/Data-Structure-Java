@@ -1,33 +1,32 @@
 package GraphDS;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Node {
+
+	private int id;
+	private List<Node> adjacent;
 	
-	public int data;
-	Node next;
-	
-	public Node(int data) {
-		this.data = data;
-		
+	public Node(int id) {
+		this.id = id;
+		this.adjacent  = new LinkedList<Node>();
 	}
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return data;
+	public int getId() {
+		return id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		if(obj==null)
-			return false;
-		if(!(obj instanceof Node))
-			return false;
-		if(obj==this)
-			return true;
-		return this.data == ((Node)obj).data;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
+	public void addAdjacentNodes(Node newNode) {
+		this.adjacent.add(newNode);
+	}
+	public List<Node> getAdjacent(){
+		return this.adjacent;
+	}
 	
 	
 }
